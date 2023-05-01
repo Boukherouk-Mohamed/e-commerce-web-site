@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Home</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+   
+</head>
+<!-- body -->
+
+<body>
+    <section class="navbar">
+        <a href="http://localhost:8082">
+            <div class="logo">
+                <img src="/images/Nouveau dossier/1.png" alt="" class="logo">
+                <h2>MedCom</h2>
+            </div>
+        </a>
+    
+        <div class="navitems" >
+            <a href="http://localhost:8082">Home</a>
+            <a href="http://localhost:8082/#aboutUs">About</a>
+            <a href="http://localhost:8082/cart">Cart(  <%= results.length  %> )</a>
+            <a href="#">Login</a>
+            <a href="#">Sign Up</a>
+    
+        </div>
+        <div class="sideIcon">
+          <img src="/images/bars.png" alt="" style="width: 50px;" id="showBtn" >
+        </div>
+        <div class="sideBar" id="sideBar">
+          <div class="sideItems">
+            <a href="http://localhost:8082">Home</a>
+            <a href="http://localhost:8082/#aboutUs">About US</a>
+            <a href="http://localhost:8082/cart">Cart(  <%= results.length  %> )</a>
+            <a href="#">Login</a>
+            <a href="#">Sign Up</a>
+            <img src="/images/close.png" alt=""  id="closeBtn" class="closeBtn" >
+            
+    
+          </div>
+    
+    
+        </div>
+    </section>
+    
+    <section class="slider">
+        <div class="imagesSlider">
+            <img src="/images/2.jpg" alt="">
+        </div>
+        <div class="infos">
+            <h1>NEW COLLECTION</h1>
+            <h4>Men's clothing.</h4>
+            <button>See more</button>
+        </div>
+    </section>
+
+    
+    <section id="cardsSection">
+        <div class="main">
+            <% result.forEach(function(item){%>
+                <div class="card">
+                    <img src="images/<%= item.image  %>" alt="" class="cardImg">
+                    <div class="infoCard">
+                        <span><%= item.name %></span><br/><br/>
+                        <span><%= item.price %> DH</span>
+                    </div>
+                    <form action="/add_to_cart" method="post">
+                        <input type="hidden" name="id" value=" <%= item.id  %> ">
+                        <input type="hidden" name="name" value=" <%= item.name  %> ">
+                        <input type="hidden" name="price" value=" <%= item.price  %> ">
+                        <input type="hidden" name="quantity" value=" <%= item.quantity  %> ">
+                        <input type="hidden" name="image" value=" <%= item.image  %> ">    
+                        <input type="submit" value="add to cart" class="updateBtn">
+    
+                    </form>
+                </div>
+                <%  })  %>
+    </section>
+   
+
+
+    <section class="aboutUs" id="aboutUs">
+        <div class="title">
+            <h1>About MedCom</h1>
+        </div>
+        <div class="middleAboutUs">
+            <img src="/images/Nouveau dossier/1.png" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                 Tempora veniam mollitia earum quos! Et blanditiis dolore 
+                 nulla ipsam, hic, voluptatibus velit inventore ipsum
+                 recusandae fugit facilis eaque quidem dolores suscipit?
+            </p>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="footerCard">
+            <h1>Contact Us</h1><br><br>
+            <span>Rabat - INPT</span><br><br>
+            <span>06 88 61 73 19</span><br><br>
+            <span>boukherouk.mohamed@gmail.com</span>
+        </div>
+        <div class="footerCard">
+            <h1>LOREM IPSUM</h1><br><br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                 velit inventore ipsum
+                recusandae fugit facilis eaque quidem dolores suscipit?
+           </p>
+        </div>
+        <div class="footerCard">
+            <h1>LOREM IPSUM </h1><br><br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                velit inventore ipsum
+                recusandae fugit facilis eaque quidem dolores suscipit?
+           </p>
+        </div>
+    </section>
+
+    
+    <script src="/index2.js"></script>
+    <script src="/functionsEdit.js"></script>
+</body>
+</html>

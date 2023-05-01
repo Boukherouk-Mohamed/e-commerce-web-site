@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Cart</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-C35E69klRrIHZ+d1rB5X9i5lLxsjx3IzpqMVUbCQAKBzU0q6i3q6S9jM2epY6GwdR/KZWxO6yjwL8zlEsWuNpA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+   
+</head>
+<body>
+  <section class="navbar">
+    <a href="http://localhost:8082">
+        <div class="logo">
+            <img src="/images/Nouveau dossier/1.png" alt="" class="logo">
+            <h2>MedCom</h2>
+        </div>
+    </a>
+
+    <div class="navitems" >
+        <a href="http://localhost:8082">Home</a>
+        <a href="http://localhost:8082/#aboutUs">About</a>
+        <a href="http://localhost:8082/cart"><span>Cart( <span> <%= result.length  %> </span>)</span></a>
+        <a href="#">Login</a>
+        <a href="#">Sign Up</a>
+
+    </div>
+    <div class="sideIcon">
+      <img src="/images/bars.png" alt="" style="width: 50px;" id="showBtn" >
+    </div>
+    <div class="sideBar" id="sideBar">
+      <div class="sideItems">
+        <a href="http://localhost:8082">Home</a>
+        <a href="http://localhost:8082/#aboutUs">About</a>
+        <a href="http://localhost:8082/cart"><span>Cart( <span> <%= result.length  %> </span>)</span></a>
+        <a href="#">Login</a>
+        <a href="#">Sign Up</a>
+        <img src="/images/close.png" alt=""  id="closeBtn" class="closeBtn" >
+        
+
+      </div>
+
+
+    </div>
+</section>
+  
+<section class="tableCart">
+  <div style="margin-top: 6rem; width: 80%; padding-left: 10%;">
+      <h1>Shopping Cart</h1><hr>
+  </div><br>
+    
+    <div class="tableItems">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>image</th>
+                <th>name</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>UPDATE</th>
+                <th>REMOVE</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% result.forEach(function(item){%>
+              <tr>
+                <form action="/update" method="post">
+                    <td ><img src=" <%= item.image %> " class="cartProductImage"></td>
+                    <td><%= item.name %></td>
+                    <td><%= item.price %> DH</td>
+                    <td><input type="number" name="myNumber" min="1" id="numberCart" value= <%= item.quantity %> 
+                      
+                    
+                    </td>
+                    <td> 
+                      <input type="hidden" name="cartImage" value="<%= item.image %>">
+                      <input type="hidden" name="quantity" value="<%= item.quantity %>">
+                      <input type="hidden" name="name" value="<%= item.name %>">
+                      <input type="hidden" name="price" value="<%= item.price %>">
+                      <input class="updateBtn" type="submit" value="update" name="update">
+                      
+
+                   
+                    </td></form>
+                    <td><form action="/removeItem" method="post">
+                          <input type="hidden" name="cartImage" value="<%= item.image %>">
+                          <input class="removeBtn" type="submit" value="remove" name="removeItem">
+                        </form>
+                    </td>
+                    <td>  <%= item.price * item.quantity %>DH </td>
+              </tr>
+              <% }) %>
+                <tr>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"></td>
+                  <td style="border: none;"><form action="/clear_database" method="post" > <input style=" margin-bottom: 10px;  margin-left: 10px;margin-right: 10px ;" type="submit" value="clear database" name="clear" class="removeBtn" id="clearDatabase"> </form></td>
+                </tr>
+              
+            </tbody>
+          </table>
+          
+    </div><br>
+    <div class="totalTable">
+      <table>
+          <div style="background-color: rgb(229, 105, 56);">Cart Total</div> <br>
+          <tr>
+              <td>Total</td>
+              <td> <%= total %>  dh</td>
+          </tr>
+          <tr>
+            
+              <td></td>
+              <td ><button class="updateBtn" id="buyBtn" >Proceed to Chekout</button> </td>
+          </tr>
+      </table>
+  </div>
+
+</section>
+
+  <section class="footer">
+    <div class="footerCard">
+        <h1>Contact Us</h1><br><br>
+        <span>Localisation</span><br><br>
+        <span>06 88 61 73 19</span><br><br>
+        <span>ineRead@gmail.com</span>
+    </div>
+    <div class="footerCard">
+        <h1>Call Now</h1><br><br>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             velit inventore ipsum
+            recusandae fugit facilis eaque quidem dolores suscipit?
+       </p>
+    </div>
+    <div class="footerCard">
+        <h1>Useful Links </h1><br><br>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            velit inventore ipsum
+            recusandae fugit facilis eaque quidem dolores suscipit?
+       </p>
+    </div>
+</section>
+
+
+    <script src="/index2.js"></script>
+    <script src="/functionsEdit.js"></script>
+</body>
+</html>
